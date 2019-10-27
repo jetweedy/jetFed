@@ -1,5 +1,31 @@
 <?php
 
+// -------------------------------------------------------------------
+
+$WEBROOTMIN = $_SERVER['DOCUMENT_ROOT']."/pySandboxEditor/files";
+
+// -------------------------------------------------------------------
+
+function checkDirPath($path) {
+	$path = str_replace("..","",$path);
+	global $WEBROOTMIN;
+	$minpathlen = strlen($WEBROOTMIN);
+	if (strlen($path) >= $minpathlen) {
+		$pathstart = substr($path,0,$minpathlen);
+		if ( $pathstart == $WEBROOTMIN ) {
+			return $path;
+		}
+	}
+	return $WEBROOTMIN;
+}
+
+function sanitizeFileName($file) {
+	$file = preg_replace("/[^a-zA-Z0-9-\/_ \.]/", "", ($file));;
+	$file = preg_replace("/\.\.+/", ".", $file);
+	return $file;
+}
+
+
 function isLocal() {
 	return (substr($_SERVER['HTTP_HOST'],0,9)=="localhost");
 }
