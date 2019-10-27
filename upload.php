@@ -5,23 +5,23 @@ if (isLocal()) {
 	
 	$path = grabVar("path");
 	$action = grabVar("action");
-	
-//	print $path . "<br />";
-//	print $action . "<Br />";
-	
-	if ($path!="" && $action=="uploadFile") {
-		$path = $path . "/";
-		$path = preg_replace("/\/\/+/","/", $path);
-		$target_file = $path . basename($_FILES["fileToUpload"]["name"]);
-//		print $target_file;
-		move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-		?>
-		<script type='text/javascript'>
-		setTimeout("parent.location.reload();", 100);
-		</script>
-		<?php
-	} else {
-	
+
+	$okpath = checkDirPath($path);
+	if ($okpath==$path) {
+	//	print $path . "<br />";
+	//	print $action . "<Br />";
+		if ($path!="" && $action=="uploadFile") {
+			$path = $path . "/";
+			$path = preg_replace("/\/\/+/","/", $path);
+			$target_file = $path . basename($_FILES["fileToUpload"]["name"]);
+	//		print $target_file;
+			move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+			?>
+			<script type='text/javascript'>
+			setTimeout("parent.location.reload();", 100);
+			</script>
+			<?php
+		} else {
 	
 ?>
 
@@ -39,6 +39,7 @@ html, body, p, div {
 </form>
 
 <?php
+		}
 	}
 }
 ?>

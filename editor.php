@@ -3,7 +3,7 @@
 //// --------------------------------------------------------------
 //// Config
 //// --------------------------------------------------------------
-$WEBROOTPATH = "/var/www/html";
+$WEBROOTPATH = $_SERVER['DOCUMENT_ROOT'];
 $WEBDOMAIN = "http://localhost:8187";
 //// --------------------------------------------------------------
 
@@ -22,6 +22,7 @@ if (isLocal()) {
 
 	$code = "";
 	$path = realpath(grabVar("path"));
+	$path = checkDirPath($path);
 	$file = grabVar("file");
 	$ext = "";
 	if ($file!="") {
@@ -35,7 +36,6 @@ if (isLocal()) {
 	if ($path=="") {
 		$path = getcwd();
 	}
-//	print "<strong>Path:</strong> " . $path . "/" . $file;
 //	print " | " . $ext;
 //	print "<hr />";
 	$sd = scandir($path);
@@ -76,17 +76,20 @@ if ( strlen($urlpath)>0 && $urlpath[strlen($urlpath)-1]!="/" ) {
 </head>
 <body>
 
+<?php
+	print "<p><strong>Folder:</strong> $path</p>";	
+?>
+	
 <button id="btnSave">Save</button>
 <button id="btnCreateFolder">New Folder</button>
 <button id="btnCreateFile">New File</button>
 <iframe id="uploadframe" src="upload.php?path=<?php print $path; ?>"></iframe>
 
-
 <div id="filetree">
 <?php
 foreach($files as $f) {
 	print "<div class='filerow'>";
-	print "&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"javascript:deleteFile('".$path."/".$file."');\">[X]</a>";
+	print "&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"javascript:deleteFile('".$path."/".$f."');\">[X]</a>";
 	if ($urlpath!="") {
 		print " <a href='".$urlpath.$f."' target='_blank'>[&gt;]</a>";
 	}
@@ -95,11 +98,14 @@ foreach($files as $f) {
 }
 print "<br /><br />";
 foreach($directories as $directory) {
-	print "<div class='filerow'>";
-	print "&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"javascript:deleteFolder('".$path."/".$directory."');\">[X]</a>";
-	print "&nbsp;&nbsp;";
-	print "<a href='?path=".$path."/".$directory."'>[+] ".$directory."</a>";
-	print "</div>";
+	if ($directory==".") {} else {
+		$dirpath = checkDirPath($path."/".$directory);
+		print "<div class='filerow'>";
+		print "&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"javascript:deleteFolder('".$dirpath."');\">[X]</a>";
+		print "&nbsp;&nbsp;";
+		print "<a href='?path=".$dirpath."'>[+] ".$directory."</a>";
+		print "</div>";
+	}
 }
 ?>
 </div>

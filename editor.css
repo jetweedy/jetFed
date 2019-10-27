@@ -7,7 +7,7 @@
 	#filetree {
 		margin:0;
 		position:absolute;
-		top:40px;
+		top:80px;
 		left:0px;
 		width:290px;
 		padding:5px;
@@ -17,7 +17,7 @@
     #editor {
         margin: 0;
         position: absolute;
-        top: 60px;
+        top: 100px;
         bottom: 0;
         left: 300px;
         right: 0;
@@ -27,7 +27,7 @@
 	}
 	#btnSave {
 		position:absolute;
-		top:5px;
+		top:45px;
 		right:5px;
 		height:20px;
 	}
@@ -35,7 +35,7 @@
 		position:absolute;
 		height:60px;
 		width:400px;
-		top:5px;
+		top:45px;
 		right:200px;
 		border:0;
 	}
