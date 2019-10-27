@@ -2,7 +2,7 @@
 
 // -------------------------------------------------------------------
 
-$WEBROOTMIN = $_SERVER['DOCUMENT_ROOT']."/pySandboxEditor/files";
+$WEBROOTMIN = $_SERVER['DOCUMENT_ROOT']."/jetFed/files";
 
 // -------------------------------------------------------------------
 
