@@ -7,7 +7,7 @@ $WEBROOTMIN = $_SERVER['DOCUMENT_ROOT']."/jetFed/get/files";
 // -------------------------------------------------------------------
 
 function checkDirPath($path) {
-	$path = str_replace("..","",$path);
+//	$path = str_replace("..","",$path);
 	global $WEBROOTMIN;
 	$minpathlen = strlen($WEBROOTMIN);
 	if (strlen($path) >= $minpathlen) {

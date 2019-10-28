@@ -49,7 +49,7 @@ if (isLocal()) {
 		case "deleteFolder":
 			$folder = grabVar("folder");
 			$okpath = checkDirPath($folder);
-			if ($okpath==$folder) {
+			if ($okpath==$folder && realpath($folder)!=realpath($WEBROOTMIN)) {
 				print "DELETE " . $folder;
 				rmdirRF($folder);
 			}

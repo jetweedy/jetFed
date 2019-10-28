@@ -101,8 +101,11 @@ foreach($directories as $directory) {
 	if ($directory==".") {} else {
 		$dirpath = checkDirPath($path."/".$directory);
 		print "<div class='filerow'>";
-		print "&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"javascript:deleteFolder('".$dirpath."');\">[X]</a>";
-		print "&nbsp;&nbsp;";
+		print "&nbsp;&nbsp;&nbsp;&nbsp;";
+		if ($directory!="..") {
+			print "<a href=\"javascript:deleteFolder('".$dirpath."');\">[X]</a>";
+			print "&nbsp;&nbsp;";
+		}
 		print "<a href='?path=".$dirpath."'>[+] ".$directory."</a>";
 		print "</div>";
 	}
