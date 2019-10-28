@@ -1,6 +1,6 @@
 <?php
 ini_set("display_errors", 1);
-include("php/fun.php");
+include("fun.php");
 if (isLocal()) {
 	
 	$path = grabVar("path");

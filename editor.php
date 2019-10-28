@@ -8,7 +8,7 @@ $WEBDOMAIN = "http://localhost:8187";
 //// --------------------------------------------------------------
 
 ini_set("display_errors", 1);
-include("php/fun.php");
+include("fun.php");
 if (isLocal()) {
 
 	$modes = array(

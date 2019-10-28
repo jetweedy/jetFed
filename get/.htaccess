@@ -1,4 +1,4 @@
-Options -Indexes
-RewriteEngine On
-RewriteBase /jetFed/get/
-RewriteRule (.*) http://localhost:8380/jetFed/_get.php?file=$1 [R]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
